@@ -4,7 +4,7 @@
 
 Welcome to the Transfer Me template, now freely available for everyone! 📚✨ This template serves as a ready-to-go front-end solution, giving you a solid foundation for your app ideas. Whether you're a beginner or an experienced developer, this kit includes essential elements to kickstart your project.
 
-Note currently under maintaince 🔨
+Note currently under maintenance 🔨
 
 ## Features
 
