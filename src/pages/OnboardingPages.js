@@ -1,119 +1,123 @@
-import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   StyleSheet,
   Text,
   View,
-  Dimensions,
   SafeAreaView,
   TouchableOpacity,
   Image,
 } from "react-native";
 import Swiper from "react-native-swiper";
+import { useNavigation } from "@react-navigation/native";
 
 const OnboardingPages = () => {
-  // Function to navigate to -> SignIn page
-  function goToLoginSkip() {
-    navigation.navigate("SignIn");
-  }
-
-  // Function navigate to -> SignUp page
-  function getStartedSignUp() {
-    navigation.navigate("SignUp");
-  }
-
+  const [activeIndex, setActiveIndex] = useState(0);
+  const swiperRef = useRef(null);
   const navigation = useNavigation();
 
-  const swiperRef = useRef(null);
-
-  function handleContinue() {
-    // Add a delay of 1000 milliseconds (1 second)
+  const handleContinue = () => {
     setTimeout(() => {
-      // Move to the next slide
-      swiperRef.current.scrollBy(1, true);
+      swiperRef.current.scrollBy(1);
     }, 500);
-  }
+  };
 
-  // ...
+  // Navigate to SignIn page
+  const goToLoginSkip = () => {
+    navigation.navigate("SignIn");
+  };
+
+  // Navigate to SignUp page
+  const getStartedSignUp = () => {
+    navigation.navigate("SignUp");
+  };
 
   return (
     <Swiper
       ref={swiperRef}
+      index={activeIndex}
+      onIndexChanged={(index) => setActiveIndex(index)}
       paginationStyle={{ bottom: "24%" }}
       style={styles.wrapper}
       showsButtons={false}
       loop={false}
-      dotColor="#D6D6D6" // Default dot color (inactive)
-      activeDotColor="#54408C" // Active dot color
+      dotColor="#8EDFEB"
+      activeDotColor="#54408C"
       activeDotStyle={styles.customDot}
-      dotStyle={styles.customDot} // Style for dots
-      onIndexChanged={(index) => console.log("Current Index: ", index)}
+      dotStyle={styles.customDot}
     >
       {/* Slide 1 */}
       <SafeAreaView style={styles.slide}>
         <View>
           <Image
             source={require("../../assets/onboarding/onboarding-image-1.png")}
-            style={{
-              width: "80%",
-              height: "65%",
-              alignSelf: "center",
-              top: "15%",
-            }}
+            style={styles.imageStyle}
           />
         </View>
-        <View>
-          <Text
-            style={{
-              color: "black",
-              fontSize: 30,
-              fontWeight: "bold",
-              width: "75%",
-              textAlign: "center",
-              left: "15%",
-              bottom: "100%",
-            }}
-          >
-            Saving Your Money
-          </Text>
-          <Text
-            style={{
-              color: "#A6A6A6",
-              fontSize: 16,
-              textAlign: "center",
-              bottom: "60%",
-              width: "90%",
-              left: "5%",
-            }}
-          >
+        <View style={styles.textView}>
+          <Text style={styles.mainText}>Saving Your Money</Text>
+          <Text style={styles.subText}>
             Track the progress of your savings and start a habit of saving with
             TransferMe.
           </Text>
         </View>
-        <View>
+        <View style={styles.buttonView}>
           <TouchableOpacity
             onPress={handleContinue}
-            style={{
-              backgroundColor: "#5063BF",
-              width: "85%",
-              alignSelf: "center",
-              height: "27.5%",
-              bottom: "6.5%",
-              borderRadius: 15,
-            }}
+            style={styles.continueButton}
             activeOpacity={0.6}
           >
-            <Text
-              style={{
-                textAlign: "center",
-                color: "white",
-                fontSize: 20,
-                fontWeight: "600",
-                top: "27.5%",
-              }}
-            >
-              Continue
-            </Text>
+            <Text style={styles.buttonText}>Continue</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+
+      {/* Slide 2 */}
+      <SafeAreaView style={styles.slide}>
+        <View>
+          <Image
+            source={require("../../assets/onboarding/onboarding-image-2.png")}
+            style={styles.imageStyle}
+          />
+        </View>
+        <View style={styles.textView}>
+          <Text style={styles.mainText}>Easy, Fast & Trusted</Text>
+          <Text style={styles.subText}>
+            Fast money transfer and guaranteed safe transactions with others.
+          </Text>
+        </View>
+        <View style={styles.buttonView}>
+          <TouchableOpacity
+            onPress={handleContinue}
+            style={styles.continueButton}
+            activeOpacity={0.6}
+          >
+            <Text style={styles.buttonText}>Continue</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+
+      {/* Slide 3 */}
+      <SafeAreaView style={styles.slide}>
+        <View>
+          <Image
+            source={require("../../assets/onboarding/onboarding-image-3.png")}
+            style={styles.imageStyle}
+          />
+        </View>
+        <View style={styles.textView}>
+          <Text style={styles.mainText}>Multiple Debit Cards</Text>
+          <Text style={styles.subText}>
+            Provides the freedom of financial management with Multiple Payment
+            Options for local & International Payments.
+          </Text>
+        </View>
+        <View style={styles.buttonView}>
+          <TouchableOpacity
+            onPress={getStartedSignUp}
+            style={styles.continueButton}
+            activeOpacity={0.6}
+          >
+            <Text style={styles.buttonText}>Get Started</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -121,17 +125,63 @@ const OnboardingPages = () => {
   );
 };
 
-export default OnboardingPages;
-
 const styles = StyleSheet.create({
   slide: {
     backgroundColor: "#FFFFFF",
     flex: 1,
   },
   customDot: {
-    height: "150%", // Set the desired height for the dots
-    width: "2.5%", // Set the desired width for the dots
-    borderRadius: 15, // Set border radius for rounded dots
-    marginHorizontal: 8, // Set the horizontal margin between dots
+    bottom: "10%",
+    height: "200%",
+    width: "3%",
+    borderRadius: 15,
+    marginHorizontal: 8,
+  },
+  imageStyle: {
+    width: "80%",
+    height: "65%",
+    alignSelf: "center",
+    top: "20%",
+  },
+  textView: {
+    position: "absolute",
+    bottom: "35%",
+    width: "100%",
+    alignItems: "center",
+    paddingHorizontal: "5%",
+  },
+  mainText: {
+    color: "black",
+    fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+    top: "5%",
+  },
+  subText: {
+    color: "#A6A6A6",
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 15,
+  },
+  buttonView: {
+    position: "absolute",
+    bottom: "10%",
+    width: "100%",
+    alignItems: "center",
+  },
+  continueButton: {
+    backgroundColor: "#5063BF",
+    width: "50%",
+    paddingVertical: 15,
+    borderRadius: 15,
+    bottom: "150%",
+  },
+  buttonText: {
+    textAlign: "center",
+    color: "white",
+    fontSize: 20,
+    fontWeight: "600",
   },
 });
+
+export default OnboardingPages;
