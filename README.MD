@@ -10,6 +10,8 @@ Note currently under maintenance 🔨
 
 ✅ App icon  
 ✅ Splash screen  
+✅ Onboarding 3 pages
+✅ SignIn & SignUp currently under maintenance
 
 ## How to Use
 
