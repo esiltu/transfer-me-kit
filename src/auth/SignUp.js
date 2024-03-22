@@ -1,14 +1,23 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, Image } from "react-native";
 import React from "react";
 
-const SignUp = () => {
+export default function SignUp() {
   return (
-    <View>
-      <Text>SignUp</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.headerViewStyle}>
+        <Image
+          source={require("../../assets/icon-transfer-me.png")}
+          style={styles.headerImageStyle}
+        />
+      </View>
+    </SafeAreaView>
   );
-};
+}
 
-export default SignUp;
-
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  headerViewStyle: {},
+  headerImageStyle: {},
+});

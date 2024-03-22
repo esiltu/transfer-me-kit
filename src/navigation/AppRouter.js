@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { OnboardingPages } from "../routers/PagesRouter";
+import { OnboardingPages, SignIn, SignUp } from "../routers/PagesRouter";
 
 const Stack = createStackNavigator();
 
@@ -13,6 +13,16 @@ export default function AppRouter() {
           <Stack.Screen
             name="OnboardingPages"
             component={OnboardingPages}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SignIn"
+            component={SignIn}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SignUp"
+            component={SignUp}
             options={{ headerShown: false }}
           />
         </Stack.Group>
