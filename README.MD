@@ -20,7 +20,7 @@ Note currently under maintenance 🔨
 3. Install dependencies using `npm install` or `yarn install`.
 4. Run the app using `npm start` or `yarn start`.
 
-Feel free to contribute and enhance the Books Bazar template! 🚀
+Feel free to contribute and enhance the Transfer Me template! 🚀
 
 ## Preview Of Template
 
